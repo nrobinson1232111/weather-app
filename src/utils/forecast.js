@@ -10,7 +10,8 @@ const forecast = (longitude, lattitude, callback) => {
                 name: data.location.name,
                 weather_descriptions: data.current.weather_descriptions[0], 
                 temperature: data.current.temperature,
-                feelsLike: data.current.feelslike
+                feelsLike: data.current.feelslike,
+                humidity: data.current.humidity
             })
         } else{
             callback({error: 'Error with API entry'}, undefined);

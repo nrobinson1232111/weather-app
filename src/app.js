@@ -24,21 +24,21 @@ app.use(express.static(path.join(__dirname, '../Public')))
 app.get('', (req, res) => {
     res.render("index", {
         title: 'Weather',
-        name: 'Andrew Mead'
+        name: 'Nathan Robinson'
     })
 })
 
 app.get('/about', (req, res) => {
     res.render('about', {
         title: 'About me',
-        name: 'Andrew Mead'
+        name: 'Nathan Robinson'
     })
 })
 
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
-        name: 'Andrew Mead',
+        name: 'Nathan Robinson',
         message: "Nobody panic!"
     })
 })
@@ -67,7 +67,7 @@ app.get('/weather', (req, res) => {
             return res.send(error);
         }
 
-        forecast(longitude, lattitude, (error, {weather_descriptions: weather, temperature, feelsLike}={})=>{
+        forecast(longitude, lattitude, (error, {weather_descriptions: weather, temperature, feelsLike, humidity}={})=>{
             if(error){
                 return res.send({error: 'Unable to connect to weather service.'})
             }
@@ -77,7 +77,8 @@ app.get('/weather', (req, res) => {
                 location: location,
                 address: req.query.address,
                 weather: weather,
-                feelsLike: feelsLike
+                feelsLike: feelsLike,
+                humidity: humidity
             })
         })
     })
